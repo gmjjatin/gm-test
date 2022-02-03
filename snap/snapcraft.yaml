@@ -1,5 +1,5 @@
 
-name: grumpy-camera-app
+name: grumpy-1
 version: '0.5'
 summary: Grumpy Camera Recording App
 description: | 
@@ -14,7 +14,7 @@ architectures:
     run-on: amd64
  
 apps:
-  grumpy-camera-app:
+  grumpy-1:
     command: grumpy-camera/grumpy-camera --no-sandbox
     extensions: [ gnome-3-38 ]
     plugs:
