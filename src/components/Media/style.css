@@ -1,0 +1,55 @@
+.outer_div {
+    margin: 1px solid red;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+video {
+    position: relative;
+    left: 20%;
+    margin-top: 20px;
+    transform: none;
+    margin-bottom: 20px;
+    max-height: 400px;
+}
+
+.image-preview {
+    max-height: 400px;
+    left: 50%;
+    margin-top: 20px;
+}
+
+
+.link_button {
+    background-color: inherit;
+    border-radius: 5px;
+    color: white;
+    border: 2px solid rgb(25, 118, 210);
+}
+
+
+.video-wrapper1 {
+    height: 400px;
+    background: aliceblue;
+    left: 0;
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}

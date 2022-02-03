@@ -1,0 +1,101 @@
+.small_button {
+  background-color: inherit;
+  font-style: normal;
+
+  border-radius: 150px;
+  padding: 2px 25px;
+  color: white;
+  cursor: default !important;
+  margin: 15px;
+  border: 1px solid white;
+}
+
+.link_button {
+  background-color: inherit;
+  font-style: normal;
+
+  border-radius: 5px;
+  color: white;
+  margin: 15px;
+  border: 2px solid rgb(25, 118, 210);
+  padding: 2px 25px;
+}
+
+.link_button:hover {
+  background-color: rgb(25, 118, 210);
+  color: white;
+}
+
+.link_button1 {
+  background-color: inherit;
+  font-style: normal;
+
+  border-radius: 5px;
+  padding: 2px 25px;
+  margin-left: -10px !important;
+  color: white;
+  border: 2px solid rgb(25, 118, 210);
+}
+
+.link_button1:hover {
+  background-color: rgb(25, 118, 210);
+  color: white;
+}
+
+.svg_icons {
+  cursor: pointer;
+  width: 50px;
+}
+
+.slider_icons {
+  height: 5px !important;
+}
+.slider_icons .MuiSlider-thumb {
+  height: 25px !important;
+  width: 25px !important;
+}
+
+.text {
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fill img {
+  flex-shrink: 0;
+  min-width: 95%;
+  /* min-height: 100%; */
+  max-height: 750px;
+}
+
+.vertical-center {
+  margin: 0px;
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  width: 85%;
+  align-items: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical-center .svg_icons {
+  width: 50px;
+}
+
+.exit-icon {
+  margin: 15px;
+}
+
+.video-wrapper {
+  flex-shrink: 0;
+  min-width: 95%;
+  height: 750px;
+  background: aliceblue;
+}

@@ -1,0 +1,86 @@
+
+name: grumpy-camera-app
+version: '0.5'
+summary: Grumpy Camera Recording App
+description: | 
+  This app can connect to a remote camera through Wifi, stream video, manipulate the video and record it.
+base: core20
+confinement: devmode
+grade: stable
+
+
+architectures:
+  - build-on: amd64
+    run-on: amd64
+ 
+apps:
+  grumpy-camera-app:
+    command: grumpy-camera/grumpy-camera --no-sandbox
+    extensions: [ gnome-3-38 ]
+    plugs:
+    - browser-support
+    - network
+    - network-bind
+    - network-manager
+    - removable-media
+    # Correct the TMPDIR path for Chromium Framework/Electron to ensure
+    # libappindicator has readable resources.
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
+      
+
+parts:
+  ffmpeg:
+    plugin: autotools
+    source: http://ffmpeg.org/releases/ffmpeg-4.1.7.tar.bz2
+    override-build: |
+     ./configure --enable-libx264 --enable-nonfree --enable-gpl --enable-libfreetype --enable-libzmq
+      make
+      make alltools
+      make install
+      mkdir -pv $SNAPCRAFT_PART_INSTALL/bin
+      cp ./ffmpeg $SNAPCRAFT_PART_INSTALL/bin
+      cp ./tools/graph2dot $SNAPCRAFT_PART_INSTALL/bin
+      cd ./tools/
+      gcc -o $SNAPCRAFT_PART_INSTALL/bin/zmqsend zmqsend.c -I.. `pkg-config --libs --cflags libzmq libavutil`
+    build-packages:
+      - libx264-dev
+      - libsdl1.2-dev
+      - libfreetype6-dev  
+      - libzmq3-dev
+      - yasm
+    stage-packages:
+      - libnorm1
+      - libpgm-5.2-0
+      - libsodium23
+      - libx264-155
+      - libzmq5
+  nmcli:
+   plugin: nil
+   stage-packages:
+   - network-manager
+   - libatm1
+   - libxtables12
+   - libslang2
+   organize:
+    usr/bin/nmcli: bin/nmcli
+  grumpy-camera:
+    plugin: nil
+    source: .
+    override-build: |
+        npm cache clean --force
+        npm install
+        npm install --unsafe-perm true electron-packager
+        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
+        cp -r ./grumpy-camera-linux-* $SNAPCRAFT_PART_INSTALL/grumpy-camera
+        pwd bin
+     #   tree $SNAPCRAFT_PART_INSTALL/grumpy-camera
+    build-snaps:
+    - node/14/stable
+    build-packages:
+    - unzip
+    - network-manager
+    stage-packages:
+    - libnss3
+    - libnspr4
+

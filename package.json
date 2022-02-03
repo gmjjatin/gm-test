@@ -1,0 +1,87 @@
+{
+  "name": "grumpy-camera",
+  "version": "0.1.0",
+  "private": true,
+  "main": "public/electron.js",
+  "author": "Vishal Sinha <vishal.s@smarter.codes>",
+  "description": "Grumpy App",
+  "homepage": "./",
+  "dependencies": {
+    "@cycjimmy/jsmpeg-player": "^5.0.1",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.0.1",
+    "@mui/material": "^5.0.2",
+    "@mui/styles": "^5.0.1",
+    "@mui/x-data-grid": "^4.0.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "app-root-dir": "^1.0.2",
+    "cross-env": "^7.0.3",
+    "crypto": "^1.0.1",
+    "drivelist": "^9.2.4",
+    "electron-is-dev": "^2.0.0",
+    "node-wifi": "^2.0.15",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "sql.js": "^1.6.2",
+    "tree-kill": "^1.2.2",
+    "typescript": "^4.4.4",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"BROWSER=none npm start\"  \"wait-on tcp:3000 && electron .\"",
+    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron build/electron.js",
+    "start-prod": "npm run build && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "postinstall": "./node_modules/.bin/electron-rebuild"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.2",
+    "electron": "^10.1.0",
+    "electron-builder": "^22.13.1",
+    "electron-rebuild": "^3.2.3",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "appId": "grumpy-camera-app",
+    "icon": "public/grumpy_innovation_logo.jpg",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "linux": {
+      "target": "snap",
+      "category": "Utility"
+    }
+  }
+}
